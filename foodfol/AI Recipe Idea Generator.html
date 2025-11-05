@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://127.0.0.1:5500/pythongit/apis.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Recipe Idea Generator</title>
+    <!-- Load Tailwind CSS -->
+    <script src="./AI Recipe Idea Generator_files/saved_resource"></script>
+    <!-- Use Inter Font -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f3f0; /* Light parchment color */
+        }
+        .container-card {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+        .btn-primary {
+            background-color: #e27d60; /* Deep coral */
+            transition: background-color 0.2s;
+        }
+        .btn-primary:hover {
+            background-color: #d16e55;
+        }
+        .loading-indicator {
+            border-top-color: #e27d60;
+            -webkit-animation: spin 1s linear infinite;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.mr-2{margin-right:0.5rem}.mt-10{margin-top:2.5rem}.mt-4{margin-top:1rem}.block{display:block}.flex{display:flex}.hidden{display:none}.h-6{height:1.5rem}.h-8{height:2rem}.min-h-\[150px\]{min-height:150px}.min-h-screen{min-height:100vh}.w-6{width:1.5rem}.w-8{width:2rem}.w-full{width:100%}.max-w-2xl{max-width:42rem}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-center{justify-content:center}.space-x-2 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.5rem * var(--tw-space-x-reverse));margin-left:calc(0.5rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.whitespace-pre-wrap{white-space:pre-wrap}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-4{border-width:4px}.border-t{border-top-width:1px}.border-t-4{border-top-width:4px}.border-gray-200{--tw-border-opacity:1;border-color:rgb(229 231 235 / var(--tw-border-opacity, 1))}.border-gray-300{--tw-border-opacity:1;border-color:rgb(209 213 219 / var(--tw-border-opacity, 1))}.bg-gray-50{--tw-bg-opacity:1;background-color:rgb(249 250 251 / var(--tw-bg-opacity, 1))}.p-3{padding:0.75rem}.p-4{padding:1rem}.p-6{padding:1.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.pt-6{padding-top:1.5rem}.text-center{text-align:center}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.italic{font-style:italic}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}.text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-800{--tw-text-opacity:1;color:rgb(31 41 55 / var(--tw-text-opacity, 1))}.text-red-500{--tw-text-opacity:1;color:rgb(239 68 68 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-150{transition-duration:150ms}.duration-200{transition-duration:200ms}.hover\:shadow-xl:hover{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.focus\:ring-2:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.focus\:ring-red-300:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(252 165 165 / var(--tw-ring-opacity, 1))}@media (min-width: 640px){.sm\:p-8{padding:2rem}}</style></head>
+<body class="min-h-screen flex items-start justify-center p-4 sm:p-8">
+
+    <div id="app-container" class="w-full max-w-2xl mt-10 p-6 sm:p-8 rounded-xl container-card">
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-6 flex items-center justify-center">
+            <svg class="w-8 h-8 mr-2 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.761 1.761 0 01-1.378 1.73l-.48.16C8.834 21.365 8 21.033 8 20.375v-1.745l-1.558.52a1.761 1.761 0 01-1.378 1.73l-.48.16C3.834 21.365 3 21.033 3 20.375V4.625c0-.658.834-.989 1.378-.81l.48.16A1.761 1.761 0 016 4.76V18.12l1.558-.52a1.761 1.761 0 011.378-1.73l.48-.16c.544-.18 1.378.147 1.378.805V5.882zM15 14.733V5.882l2.558-.854a1.761 1.761 0 011.378-1.73l.48-.16c.544-.18 1.378.147 1.378.805V19.24a1.761 1.761 0 01-1.378 1.73l-.48.16c-.544.18-1.378-.147-1.378-.805v-1.745l-1.558.52a1.761 1.761 0 01-1.378 1.73l-.48.16c-.544.18-1.378-.147-1.378-.805V14.733z"></path></svg>
+            AI Recipe Generator
+        </h1>
+        <p class="text-center text-gray-600 mb-6">Tell Gemini what ingredients you have, dietary restrictions, or a desired cuisine!</p>
+
+        <!-- Input Form -->
+        <div class="space-y-4 mb-8">
+            <label for="prompt-input" class="block text-sm font-medium text-gray-700">Your Recipe Idea / Ingredients:</label>
+            <textarea id="prompt-input" rows="3" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-300 transition duration-150" placeholder="e.g., &#39;A quick vegetarian dinner using broccoli and pasta&#39;, or &#39;A gourmet steak recipe for a special occasion&#39;." value="A quick dinner recipe using chicken, rice, and soy sauce, ready in under 30 minutes."></textarea>
+            <button id="generate-button" class="btn-primary text-white w-full py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition duration-200">
+                Generate Recipe
+            </button>
+        </div>
+
+        <!-- Recipe Output -->
+        <div id="output-section" class="pt-6 border-t border-gray-200">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Your AI-Generated Recipe:</h2>
+            <div id="recipe-output" class="min-h-[150px] p-4 bg-gray-50 border border-gray-200 rounded-lg text-gray-700 whitespace-pre-wrap">
+                <!-- Recipe content will appear here -->
+                <p class="text-gray-500 italic">Click "Generate Recipe" to get started!</p>
+            </div>
+        </div>
+
+        <!-- Error/Loading Messages -->
+        <div id="message-area" class="mt-4 text-center">
+            <!-- Loading Spinner -->
+            <div id="loading-spinner" class="hidden flex items-center justify-center space-x-2">
+                <div class="loading-indicator h-6 w-6 border-4 border-t-4 border-gray-200 rounded-full"></div>
+                <span class="text-red-500 font-medium">Generating culinary brilliance...</span>
+            </div>
+            <!-- Error Message -->
+            <p id="error-message" class="hidden text-red-500 font-medium"></p>
+        </div>
+    </div>
+
+    <script type="module">
+        // --- Firebase/Gemini Setup (MANDATORY BOILERPLATE) ---
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Global variables provided by the environment
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        let db, auth;
+
+        if (Object.keys(firebaseConfig).length > 0) {
+            setLogLevel('Debug');
+            const app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+            auth = getAuth(app);
+
+            // Auth function
+            async function authenticate() {
+                try {
+                    if (initialAuthToken) {
+                        await signInWithCustomToken(auth, initialAuthToken);
+                        console.log("Authenticated successfully with custom token.");
+                    } else {
+                        await signInAnonymously(auth);
+                        console.log("Authenticated anonymously.");
+                    }
+                } catch (error) {
+                    console.error("Firebase authentication failed:", error);
+                    document.getElementById('error-message').textContent = 'Authentication failed. See console for details.';
+                    document.getElementById('error-message').classList.remove('hidden');
+                }
+            }
+            authenticate();
+        } else {
+            console.warn("Firebase config not available. App will still function by calling the Gemini API directly, but persistence features are unavailable.");
+        }
+
+        // --- Core Application Logic ---
+
+        const generateButton = document.getElementById('generate-button');
+        const promptInput = document.getElementById('prompt-input');
+        const recipeOutput = document.getElementById('recipe-output');
+        const loadingSpinner = document.getElementById('loading-spinner');
+        const errorMessage = document.getElementById('error-message');
+
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=`;
+        const MODEL = 'gemini-2.5-flash-preview-09-2025';
+
+        // Function to make the API call with exponential backoff
+        async function fetchWithBackoff(url, options, retries = 3) {
+            for (let i = 0; i < retries; i++) {
+                try {
+                    const response = await fetch(url, options);
+                    if (!response.ok) {
+                        // Check for rate limiting (429) or other API errors
+                        if (response.status === 429 && i < retries - 1) {
+                            const delay = Math.pow(2, i) * 1000 + Math.random() * 1000;
+                            console.log(`Rate limit hit (429). Retrying in ${delay / 1000}s...`);
+                            await new Promise(resolve => setTimeout(resolve, delay));
+                            continue; // Go to next retry iteration
+                        }
+                        throw new Error(`API error: ${response.statusText} (Status: ${response.status})`);
+                    }
+                    return response;
+                } catch (error) {
+                    if (i === retries - 1) {
+                        throw error; // Throw the error if all retries fail
+                    }
+                    const delay = Math.pow(2, i) * 1000 + Math.random() * 1000;
+                    console.warn(`Fetch error: ${error.message}. Retrying in ${delay / 1000}s...`);
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                }
+            }
+        }
+
+        async function generateRecipe() {
+            const userPrompt = promptInput.value.trim();
+
+            if (!userPrompt) {
+                recipeOutput.innerHTML = '<p class="text-red-500 font-medium">Please enter a description to generate a recipe.</p>';
+                return;
+            }
+
+            // UI state management
+            generateButton.disabled = true;
+            generateButton.textContent = 'Generating...';
+            loadingSpinner.classList.remove('hidden');
+            errorMessage.classList.add('hidden');
+            recipeOutput.textContent = '';
+            recipeOutput.classList.remove('bg-gray-50', 'text-gray-700');
+            recipeOutput.classList.add('bg-gray-100', 'text-gray-500', 'italic');
+
+            // --- LLM API Call Configuration ---
+
+            const systemInstruction = `You are a world-class culinary AI assistant. Your task is to generate a single, complete, delicious, and easy-to-follow recipe based on the user's request.
+            
+            The recipe MUST include:
+            1. Recipe Title (H3 format).
+            2. Ingredients (as an unordered list).
+            3. Instructions (as a numbered list).
+            
+            Format the output strictly using Markdown, ensuring it is easy to read. Do not include any introductory or concluding conversational text outside the generated recipe text.`;
+
+            const fullPrompt = `Generate a recipe for: ${userPrompt}`;
+
+            const payload = {
+                contents: [{ parts: [{ text: fullPrompt }] }],
+                systemInstruction: { parts: [{ text: systemInstruction }] },
+                // Enable Google Search grounding to find modern techniques or specific ingredient details
+                tools: [{ "google_search": {} }],
+                config: {
+                    temperature: 0.8,
+                }
+            };
+
+            const options = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            };
+
+            try {
+                const response = await fetchWithBackoff(API_URL, options);
+                const result = await response.json();
+                
+                const candidate = result.candidates?.[0];
+
+                if (candidate && candidate.content?.parts?.[0]?.text) {
+                    const markdownText = candidate.content.parts[0].text;
+                    
+                    // Simple Markdown to HTML conversion for display
+                    let htmlContent = markdownText
+                        .replace(/^### (.*)$/gm, '<h3 class="text-xl font-bold mb-3">$1</h3>') // H3 to H3
+                        .replace(/^\* (.*)$/gm, '<li class="ml-4 list-disc">$1</li>') // Unordered list to li
+                        .replace(/^- (.*)$/gm, '<li class="ml-4 list-disc">$1</li>') // Unordered list (alternative) to li
+                        .replace(/^[0-9]+\. (.*)$/gm, '<li class="ml-4 list-decimal mt-1">$1</li>') // Numbered list to li
+                        .replace(/\n\n/g, '<p class="mt-4"></p>') // Double newline to paragraph break
+                        .replace(/\n/g, '<br/>'); // Single newline to line break
+
+                    // Wrap lists properly (simple approach)
+                    htmlContent = htmlContent.replace(/<li class="ml-4 list-disc">[\s\S]*?<\/li>/g, match => `<ul class="list-inside mb-4">${match}</ul>`);
+                    htmlContent = htmlContent.replace(/<li class="ml-4 list-decimal mt-1">[\s\S]*?<\/li>/g, match => `<ol class="list-inside mb-4">${match}</ol>`);
+                    
+                    // Final cleanup: remove residual list item wrappers
+                    htmlContent = htmlContent.replace(/<\/ul>\n?<ul class="list-inside mb-4">/g, '');
+                    htmlContent = htmlContent.replace(/<\/ol>\n?<ol class="list-inside mb-4">/g, '');
+                    
+                    // Remove initial paragraph tag if generated
+                    htmlContent = htmlContent.trim().startsWith('<p class="mt-4"></p>') ? htmlContent.trim().substring('<p class="mt-4"></p>'.length) : htmlContent.trim();
+                    
+                    recipeOutput.innerHTML = htmlContent;
+                    recipeOutput.classList.remove('bg-gray-100', 'text-gray-500', 'italic');
+                    recipeOutput.classList.add('bg-white', 'text-gray-800');
+
+                    // Handle citations (Grounding Metadata)
+                    const groundingMetadata = candidate.groundingMetadata;
+                    let sourcesHtml = '';
+                    if (groundingMetadata && groundingMetadata.groundingAttributions) {
+                        const sources = groundingMetadata.groundingAttributions
+                            .map(attribution => ({
+                                uri: attribution.web?.uri,
+                                title: attribution.web?.title,
+                            }))
+                            .filter(source => source.uri && source.title);
+
+                        if (sources.length > 0) {
+                            sourcesHtml += '<p class="text-sm text-gray-500 mt-4 font-semibold">Sources:</p><ul class="text-xs text-gray-500 list-disc pl-5">';
+                            sources.slice(0, 3).forEach(source => { // Limit to 3 sources for clean UI
+                                sourcesHtml += `<li><a href="${source.uri}" target="_blank" class="hover:underline">${source.title}</a></li>`;
+                            });
+                            sourcesHtml += '</ul>';
+                        }
+                    }
+                    recipeOutput.innerHTML += sourcesHtml;
+                } else {
+                     throw new Error('Could not generate recipe content. Check API response for errors.');
+                }
+
+            } catch (error) {
+                console.error("Gemini API call failed:", error);
+                errorMessage.textContent = `Error: Failed to generate recipe. Please check the console for details.`;
+                errorMessage.classList.remove('hidden');
+                recipeOutput.textContent = 'Oops! Something went wrong while contacting the AI chef.';
+                recipeOutput.classList.remove('bg-gray-100', 'text-gray-500', 'italic');
+                recipeOutput.classList.add('bg-red-50', 'text-red-700');
+            } finally {
+                generateButton.disabled = false;
+                generateButton.textContent = 'Generate Recipe';
+                loadingSpinner.classList.add('hidden');
+            }
+        }
+
+        generateButton.addEventListener('click', generateRecipe);
+
+        // Run on load with a default prompt (optional, but good for first view)
+        // window.onload = () => {
+        //     generateRecipe();
+        // }
+
+    </script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+</body></html>
